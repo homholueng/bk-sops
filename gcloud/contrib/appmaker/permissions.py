@@ -25,6 +25,7 @@ mini_app_resource = DjangoModelResource(
     rtype='mini_app',
     name=_(u"轻应用"),
     scope_type='system',
+    scope_type_name=_(u"系统"),
     scope_id='bk_sops',
     scope_name=_(u"标准运维"),
     actions=[

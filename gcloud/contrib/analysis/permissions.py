@@ -20,6 +20,7 @@ statistics_resource = NeverInitiateResource(
     rtype='statistics',
     name=_(u"统计数据"),
     scope_type='system',
+    scope_type_name=_(u"系统"),
     scope_id='bk_sops',
     scope_name=_(u"标准运维"),
     actions=[Action(id='view', name=_(u"查看"), is_instance_related=False)],

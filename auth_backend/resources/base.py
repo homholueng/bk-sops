@@ -42,7 +42,7 @@ class ActionCollection(object):
 class Resource(object):
     __metaclass__ = abc.ABCMeta
 
-    def __init__(self, rtype, name, scope_type, scope_id, scope_name, actions, inspect,
+    def __init__(self, rtype, name, scope_type, scope_type_name, scope_id, scope_name, actions, inspect,
                  parent=None, operations=None, backend=None):
         self.rtype = rtype
         self.name = name
@@ -50,6 +50,7 @@ class Resource(object):
         self.scope_type = scope_type
         self.scope_id = scope_id
         self.scope_name = scope_name
+        self.scope_type_name = scope_type_name
         self.inspect = inspect
         self.backend = backend or get_backend_from_config()
         self.parent = parent
@@ -71,6 +72,7 @@ class Resource(object):
             'system_id': self.backend.client.system_id,
             'system_name': self.backend.client.system_name,
             'scope_type': self.scope_type,
+            'scope_type_name': self.scope_type_name,
             'scope_id': self.scope_id,
             'scope_name': self.scope_name,
             'resource': {
@@ -148,11 +150,12 @@ class Resource(object):
 
 
 class NeverInitiateResource(Resource):
-    def __init__(self, rtype, name, scope_type, scope_id, scope_name, actions, backend=None):
+    def __init__(self, rtype, name, scope_type, scope_type_name, scope_id, scope_name, actions, backend=None):
         super(NeverInitiateResource, self).__init__(rtype=rtype,
                                                     name=name,
                                                     actions=actions,
                                                     scope_type=scope_type,
+                                                    scope_type_name=scope_type_name,
                                                     scope_id=scope_id,
                                                     scope_name=scope_name,
                                                     backend=backend,

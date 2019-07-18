@@ -27,13 +27,15 @@ def build_need_permission(auth_resource, action_id, instance=None):
     if instance is not None:
         resource_id = instance if isinstance(instance, (basestring, int)) else auth_resource.resource_id(instance)
         resource.update({
-            'resource_id': resource_id,
+            'resource_id': str(resource_id),
             'resource_name': auth_resource.resource_name(instance)
         })
 
     base_info.update({
         'action_id': action_id,
         'action_name': auth_resource.actions_map[action_id].name,
+        'resource_type': resource['resource_type'],
+        'resource_type_name': resource['resource_type_name'],
         'resources': [
             [
                 resource

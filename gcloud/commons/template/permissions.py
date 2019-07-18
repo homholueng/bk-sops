@@ -24,6 +24,7 @@ common_template_resource = DjangoModelResource(
     rtype='common_flow',
     name=_(u"公共流程"),
     scope_type='system',
+    scope_type_name=_(u"系统"),
     scope_id='bk_sops',
     scope_name=_(u"标准运维"),
     actions=[

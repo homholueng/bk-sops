@@ -25,6 +25,7 @@ task_template_resource = DjangoModelResource(
     rtype='flow',
     name=_(u"流程模板"),
     scope_type='system',
+    scope_type_name=_(u"系统"),
     scope_id='bk_sops',
     scope_name=_(u"标准运维"),
     actions=[

@@ -25,5 +25,10 @@ def apply_permission_url(permission):
     @param permission:
     @return:
     """
-    result = http_post_request(BK_IAM_APPLY_URL_QUERY_URL, json=permission, verify=False)
+    for perm_item in permission:
+        for resource_topo in perm_item.get('resources', []):
+            for resource in resource_topo:
+                if 'resource_id' in resource:
+                    resource['resource_id'] = str(resource['resource_id'])
+    result = http_post_request(BK_IAM_APPLY_URL_QUERY_URL, json={'permission': permission}, verify=False)
     return result
