@@ -280,6 +280,7 @@ class AppMaker(models.Model):
     """
     APP maker的基本信息
     """
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     business = models.ForeignKey(Business, verbose_name=_(u"所属业务"))
     name = models.CharField(_(u"APP名称"), max_length=255)
     code = models.CharField(_(u"APP编码"), max_length=255)

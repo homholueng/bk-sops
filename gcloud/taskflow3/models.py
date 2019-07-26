@@ -757,6 +757,7 @@ class TaskFlowInstanceManager(models.Manager, managermixins.ClassificationCountM
 
 
 class TaskFlowInstance(models.Model):
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     business = models.ForeignKey(Business,
                                  verbose_name=_(u"业务"),
                                  blank=True,

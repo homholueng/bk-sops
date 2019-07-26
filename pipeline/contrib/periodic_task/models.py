@@ -389,6 +389,7 @@ class PeriodicTaskHistoryManager(models.Manager):
 
 
 class PeriodicTaskHistory(models.Model):
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     periodic_task = models.ForeignKey(
         PeriodicTask,
         related_name='instance_rel',

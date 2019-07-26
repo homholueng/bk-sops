@@ -41,6 +41,7 @@ class LogEntryManager(models.Manager):
 class LogEntry(models.Model):
     objects = LogEntryManager()
 
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     logger_name = models.SlugField(_(u"logger 名称"), max_length=128)
     level_name = models.SlugField(_(u"日志等级"), max_length=32)
     message = models.TextField(_(u"日志内容"), null=True)

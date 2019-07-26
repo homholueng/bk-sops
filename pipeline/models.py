@@ -74,6 +74,7 @@ class Snapshot(models.Model):
     """
     数据快照
     """
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     md5sum = models.CharField(_(u"快照字符串的md5sum"), max_length=32, unique=True)
     create_time = models.DateTimeField(_(u"创建时间"), auto_now_add=True)
     data = CompressJSONField(null=True, blank=True)
@@ -105,6 +106,7 @@ class TreeInfo(models.Model):
     """
     pipeline 数据信息
     """
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     data = CompressJSONField(null=True, blank=True)
 
 
@@ -583,6 +585,7 @@ class PipelineInstance(models.Model):
     """
     流程实例对象
     """
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     template = models.ForeignKey(PipelineTemplate, verbose_name=_(u'Pipeline模板'))
     instance_id = models.CharField(_(u'实例ID'), max_length=32, unique=True)
     name = models.CharField(_(u'实例名称'), max_length=MAX_LEN_OF_NAME, default='default_instance')

@@ -32,6 +32,7 @@ class FunctionTask(models.Model):
     """
     职能化认领单
     """
+    id = models.BigAutoField(_(u"ID"), primary_key=True)
     task = models.ForeignKey(TaskFlowInstance, related_name='function_task', help_text=_(u"职能化单"))
     creator = models.CharField(_(u"提单人"), max_length=32)
     create_time = models.DateTimeField(_(u"提单时间"), auto_now_add=True)
