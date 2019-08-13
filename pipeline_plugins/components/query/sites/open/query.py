@@ -215,7 +215,7 @@ def cc_get_host_by_module_id(request, biz_cc_id, supplier_account):
     return JsonResponse({'result': True if module_hosts else False, 'data': module_hosts})
 
 
-def job_get_script_list(request, biz_cc_id):
+def job_get_script_list(request):
     """
     查询业务脚本列表
     :param request:
@@ -226,12 +226,14 @@ def job_get_script_list(request, biz_cc_id):
     client = get_client_by_user(request.user.username)
     source_type = request.GET.get('type')
     script_type = request.GET.get('script_type')
+    biz_cc_id = request.GET.get('biz_cc_id')
 
     kwargs = {
-        'bk_biz_id': biz_cc_id,
         'is_public': True if source_type == 'public' else False,
         'script_type': script_type or 0,
     }
+    if biz_cc_id is not None:
+        kwargs['bk_biz_id'] = biz_cc_id
 
     script_result = client.job.get_script_list(kwargs)
 
@@ -443,7 +445,7 @@ urlpatterns = [
     url(r'^cc_search_create_object_attribute/(?P<obj_id>\w+)/(?P<biz_cc_id>\d+)/$', cc_search_create_object_attribute),
     url(r'^cc_search_topo/(?P<obj_id>\w+)/(?P<category>\w+)/(?P<biz_cc_id>\d+)/$', cc_search_topo),
     url(r'^cc_get_host_by_module_id/(?P<biz_cc_id>\d+)/$', cc_get_host_by_module_id),
-    url(r'^job_get_script_list/(?P<biz_cc_id>\d+)/$', job_get_script_list),
+    url(r'^job_get_script_list/$', job_get_script_list),
     url(r'^job_get_own_db_account_list/(?P<biz_cc_id>\d+)/$', job_get_own_db_account_list),
     url(r'^file_upload/(?P<biz_cc_id>\d+)/$', file_upload),
     url(r'^job_get_job_tasks_by_biz/(?P<biz_cc_id>\d+)/$', job_get_job_tasks_by_biz),

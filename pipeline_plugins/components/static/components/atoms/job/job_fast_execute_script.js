@@ -147,7 +147,7 @@
                 name: gettext("脚本列表"),
                 hookable: true,
                 remote: true,
-                remote_url: $.context.site_url + 'pipeline/job_get_script_list/' + $.context.biz_cc_id + '/?type=public',
+                remote_url: $.context.site_url + 'pipeline/job_get_script_list/?type=public',
                 remote_data_init: function(resp) {
                     return resp.data;
                 },
@@ -198,7 +198,7 @@
                 name: gettext("脚本列表"),
                 hookable: true,
                 remote: true,
-                remote_url: $.context.site_url + 'pipeline/job_get_script_list/' + $.context.biz_cc_id + '/?type=general',
+                remote_url: $.context.site_url + 'pipeline/job_get_script_list/?type=general&biz_cc_id=' + $.context.biz_cc_id,
                 remote_data_init: function(resp) {
                     return resp.data;
                 },
