@@ -515,6 +515,20 @@ def cc_get_business(request):
     })
 
 
+def get_notification_types(request):
+    client = get_client_by_user(request.user.username)
+    result = client.get_msg_type({})
+    if not result['result']:
+        logger.error('fetch notification types failed: {msg}'.format(msg=result['message']))
+        return JsonResponse({'result': False, 'message': result['message']})
+
+    data = []
+    for notification_type in result['data']:
+        data.append({'text': notification_type['label'], 'value': notification_type['type']})
+
+    return JsonResponse({'result': True, 'data': data})
+
+
 urlpatterns = [
     url(r'^cc_search_object_attribute/(?P<obj_id>\w+)/(?P<biz_cc_id>\d+)/$', cc_search_object_attribute),
     url(r'^cc_search_create_object_attribute/(?P<obj_id>\w+)/(?P<biz_cc_id>\d+)/$', cc_search_create_object_attribute),
